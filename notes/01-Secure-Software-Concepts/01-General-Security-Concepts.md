@@ -20,23 +20,25 @@ Although different, they are not necessarily contradictory - but they all requir
 - **Protect data from unauthorized alteration**
 - e.g. Read-only, Read-and-write, write-only, delete access, etc
 - Integrity contributes to a system's **stability** and **reliability** as well as the **authenticity** of data
+  - 안정성, 신뢰성, 진실성 (정확성)
 
 #### Availability
 
 - Availability needed is determined by criticality of data and purpose in the overall system
+  - 데이터의 중요성과 전체 시스템의 목적에 의해 정해짐
 
 #### Authentication
 
 - **Determining the _identity_ of a user. A user is authenticated before their authorization can be determined.**
-- To verify identity, a user can provide:
+  - 가장 첫번째로 우리가 해야할것은 해당 유저가 정말 그 유저가 맞는지를 확인하는것
 
+- To verify identity, a user can provide:
   - Something you know - e.g. username/password (not very reliable)
   - Something you have - e.g. token
   - Something about you (something you are) e.g. biometrics
     - ❗ Requires extra hardware, lacks specificity
 
 - New categories
-
   - what users do (dynamic biometrics such as typing patterns, gait)
   - where a user is (physical location)
 
@@ -45,8 +47,9 @@ Although different, they are not necessarily contradictory - but they all requir
 #### Authorization
 
 - **Applies predetermined access levels to the user**
+  - 해당 유저에게 미리 정해진 access level를 반영하는것
 
-1. Three elements are used
+1. Three elements are used (누가, 무엇을, 어떻게 할수 있는지를 정하는것)
    1. Requestor (subject) - already known due to authentication system
    2. Object
       1. file, program, data, other resource
@@ -55,7 +58,8 @@ Although different, they are not necessarily contradictory - but they all requir
 
 #### Accounting (Auditing)
 
-- **Accounting is a means of measuring activity, auditing is the verification of what actual happened and allows management to observe in a nonpartisan manner**
+- **Accounting is a means of measuring activity, auditing is the verification of what actual happened and allows management to observe in a nonpartisan (객관적) manner**
+  - Accounting: 활동 측량, Auditing: 활동 확인
 - Accounting can be done in IT systems by logging crucial activity as it occurs
 - Accounting is needed when activity of specific data elements is crucial enough that it may be audited at a later date and time
 
@@ -66,15 +70,17 @@ Although different, they are not necessarily contradictory - but they all requir
   - etc
 
 - Auditing takes resources to create, store, and review. Typically defaulted to minimal level so system operator must determine correct level based on system criticality.
+  - Auditing은 하려면 자원이 필요함. 그래서 보통 auditing 을 할 수 있는 필요한 최소한으로만 설정함.
 - **System criticality** is determined by information criticality associated with information manipulated/stored with the system
 
-#### Non-repudiation
+#### Non-repudiation (부인방지 - 어느 행위를 하지 않았다고 부인하는것을 방지하는것)
 
 - **Preventing a subject from denying a previous action with an object**
 - When authentication, authorization, and auditing are properly configured, non-repudiation is ensured
+  - 신원 확인, 허가, 감사가 제대로 이루어지면 부인방지가 불가능함 (누가 뭘 했는지 적어뒀으니까)
 - **Security requirements must specify the subjects, objects, and events for which non-repudiation is desired**
 
-### System Tenets
+### System Tenets (교의/주의/원리)
 
 #### Session Management
 
@@ -130,24 +136,28 @@ Although different, they are not necessarily contradictory - but they all requir
 - Higher complexity generally results in less security due to lack of understanding and more attack vectors
 - Root cause analysis, especially for potential security issues, is much more difficult in complex systems
 - **Rule of thumb**: eliminate all nonessential services and protocols
+- 메커니즘이 복잡할 수 록 오히려 관리를 못해서 허점이 더 많음. 따라서 필요없는 서비스와 프로토콜을 없애는게 더 이득임.
 
-#### Complete Mediation
+#### Complete Mediation (중재)
 
 - **Authorization is never circumvented, even with repeated access**
 - Example: security kernel
+- 같은 작업의 반복 (커널에서 프로그램 설치시 항상 admin account 비번 물어보는거)일 지라도 authorization 에 예외를 두지 않는다.
 
 #### Open Design
 
-- Don't rely on security by obscurity
+- Don't rely on security by obscurity (모호함); 막연하게 믿지 말라는거
 - Example: modern cryptography relies on the secrecy of the key, not secrecy of the algorithm
+  - 정확하게 뭘 알고 하라는듯. 그리고 알려진 보안 체계 (여러 사람에게 리뷰를 받은)를 사용하는게 안전함.
 
 #### Least Common Mechanism
 
-- **Prevent inadvertent sharing of information by using separate processes when possible**
+- **Prevent inadvertent (부주의한, 우연히 무심코) sharing of information by using separate processes when possible**
 
 #### Psychological Acceptability
 
 - Users will try to get around security if it is seen as an obstacle
+  - 쉬우면 받아들이고 어려우면 꼼수 생각해냄 유저들은
 
 #### Weakest Link
 
@@ -155,16 +165,19 @@ Although different, they are not necessarily contradictory - but they all requir
 
 #### Leveraging Existing Components
 
-- Pros: increase efficiency and security
-- Cons: monoculture environment (failures have a larger footprint)
+- 이미 사용자들이 익숙한 것들로 계속 사용하는거 (개발자 등등). 잘 아는 것들이니 사용 효율도 높고 보안도 높음.
+- 대신 해당 시스템이 뚫리면 큰일나기도 하고, 최신화 프로그램을 따라가지 못해 개발이 중단되는 사태도 가능함 (옛날 DB 프로그램 사용한다던가)
+- Pros: increase efficiency and security 
+- Cons: monoculture (단일) environment (failures have a larger footprint)
 
 #### Single Point of Failure
 
 No one single piece should be able to cause the whole system to fail
 
+// Aug 1 2022
 ## Security Models
 
-- Three key elements: people, processes, and technology
+- Three key elements: people, processes, and technology (사람, 절차, 기술)
 - Controls using 2-3 elements are more effective
 
 ### Access Control Models
