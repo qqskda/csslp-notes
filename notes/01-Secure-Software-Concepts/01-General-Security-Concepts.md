@@ -174,7 +174,7 @@ Although different, they are not necessarily contradictory - but they all requir
 
 No one single piece should be able to cause the whole system to fail
 
-// Aug 1 2022
+
 ## Security Models
 
 - Three key elements: people, processes, and technology (사람, 절차, 기술)
@@ -190,6 +190,9 @@ No one single piece should be able to cause the whole system to fail
 - originated in military
 - **restrict based on information sensitivity and clearance to access that information**
 - system designers have to determine object/subject relationships before they can be used
+  - 어느 자원에 접근할때 보안 레이블과 보안 허가증을 참고하여 통제한다 (security clearance 같은거)
+- 매우 엄격한 통제 모델이라 보안이 좋고, 중앙 집중식 관리 형태라 관리가 용이하면서도 힘들다.
+- 다만 모든 접근과 정책에 대해 확인해야 하므로 성능저하가 발생하여 상업 분야에서 사용되기 어렵다.
 
 #### DAC - discretionary access control
 
@@ -197,18 +200,18 @@ No one single piece should be able to cause the whole system to fail
 - originated in military
 - **restrict based on identity of subjects/groups they belong to**
 - If a subject has permission, it is capable of passing that permission onto any other subject
+  - 즉 어느 사람이 어느 자원에 대해 권한을 가지고 있다면, 다른 사람에게 해당 자원 접근을 허용/제한할 수 있다 (개인/그룹 정책)
 - ACLs are the most common mechanism used to implement this control
 - **Strength**: simplicity
 - **Weakness**: security is optional, owner has to define access for potentially a plethora of objects
+  - 소유자가 임의적 접근 허용을 해주어서 보안이 조금 떨어지며, 신분이 도용당할 경우 답도 없다.
 
 #### RBAC - role-based access control
 
 pretty common for active directory
-
-#### RBAC - rule-based access control
-
 - much less common than role-based
 - Use ACLs that have rules baked in such as only allow access during a certain time-of-day
+- 신분이 아닌 역할에 따른 접근 권한 부여이므로 역할을 바꿈에 따라 유연하게 접근 권한을 바꿀수 있다.
 
 #### Access control matrix model
 
@@ -230,20 +233,37 @@ pretty common for active directory
    2. \* property (star property)
       1. No-write-down
       2. Subjects can only write to an object if the object has equal or higher classification - e.g. medium clearance can only write to medium sensitivity and above
+2. 즉 중간 직책의 관리자는 중간및 하위 정보를 읽을수 있으나, 중간및 상위 보안의 정보를 작성할 수 밖에 없음.
+   1. 이렇게 하면 중간 직책 관리자는 필요한 정보 중간/하위를 얻을수 있고.
+   2. 하위 정보를 작성할 수 없음으로 상위 정보가 하위로 샐 걱정을 하지 않아도 됨.
+
+위키:
+보안 정책은 정보가 높은 레벨에서 낮은 레벨로 흐르는 것을 방지
+(No Read Up): 낮은 등급의 주체는 높은 등급의 객체를 읽을 수 없음
+(No Write Down): 높은 등급의 주체는 낮음 등급의 객체를 수정할 수 없음
+한계점: Blind Write(무결성 파괴)
 
 #### Take-Grant Model
 
 - Uses graph theory based on mathematical representation of controls
 - Can be used to definitively determine rights
 - Not typically used to implement access control but rather to analyze implementations
+- 관계도 그려서 (권한에 따른) 보안 허점 분석하는 모델
 
 ### Multilevel Security Model
 
 - **Separate groups have labels, groups act as containers, can be hierarchical**
+  - 각기 다른 그룹들은 레이블을 가지고 있고 (서버코어, 페이먼트...), 컨테이너에 속하고 (Dev Team), 계층적일수 있다 (CTO-DevTeam...)
 
 ### Integrity Models
 
 - Depending on type of information, can be just as important or more important than confidentiality. e.g. stock prices (public but integrity is crucial)
+  - 정보의 종류에 따라 무엇이 중요한지는 다를수 있음. 정보의 정확성이 중요하면 기밀성은 조금 떨어져도 괜찮 (주식 정보등)
+
+인가되지 않은 사용자에 의해 데이터가 수정되는 것을 통제
+인가된 사용자라 할지라도 권한이 없는 데이터를 수정하는 것을 통제
+데이터는 내/외부적으로 일관성을 유지
+무결성을 위한 규칙: 주체 → 프로그램 → 객체
 
 #### Biba Integrity Model
 
@@ -253,25 +273,39 @@ pretty common for active directory
   - lower integrity subjects can't write up to higher integrity subjects
 - Integrity level of a subject is lowered if it acts on a subject with lower integrity
 
+BLP의 단점을 보완한 무결성을 보장하는 최초의 모델
+무결성의 3가지 목표 중 비인가자의 데이터 수정 방지 가능
+비바 무결성 모델의 속성 - 밑에서 등급은 무결성 등급을 말함
+(No Read Down): 높은 등급의 주체는 낮은 등급의 객체를 읽을 수 없음
+(No Write Up): 낮은 등급의 주체는 상위 등급의 객체를 수정할 수 없음
+
+무결성과 기밀성의 차이를 생각해보면 왜 방향이 반대인지 이해 가능함.
+
 #### Clark-Wilson security model
 
 - Uses transactions
 - Two levels:
-  - Constrained data items (CDI)
+  - Constrained data items (CDI) **(통장잔고)**
     - Subject to integrity controls
-- Unconstrained data items (UDI)
+  - Unconstrained data items (UDI)
 - Two types of processes:
-  - Integrity verification processes (IVPs)
+  - Integrity verification processes (IVPs) **(통장 잔고 무결성)**
     - Ensure CDI data meets constraints
-  - Transformation processes (TPs)
+  - Transformation processes (TPs) **(통장 잔고 변동)**
     - Change state of data from one to another
     - Data can only be changed by trusted TPs, not users
+    - 아까 위에 적힌 무결성을 위한 규칙: 프로그램이 객체를 수정한다.
 
 Example:
 
 - A bank account balance is a CDI since integrity is important
 - TP is the only way changes can be made
 - IVP ensures balance is correct
+
+무결성 중심의 상업용 모델로 설계된 모델
+상용 응용 보안 요구 사항을 다루고 있음
+금융·회계 데이터는 자산에 대한 정보를 취급하고 있어 변조 방지가 더욱 중요
+예측 가능하고 완전하게 처리되는 자료처리 정책이 필요
 
 ### Information Flow Models
 
@@ -280,11 +314,17 @@ Example:
 - Technology employed to prevent access
 - People trained not to compromise information
 - Policies/processes put in place to ensure technology/people are properly used
+  
+충돌을 야기하는 어떠한 정보의 흐름도 차단해야 한다는 모델로 이익 충돌 회피를 위한 모델
+직무 분리를 접근 통제에 반영한 개념이 적용
+금융 서비스 제공 회사가 이해 충돌의 발생을 막기 위해 설계된 내부 규칙
+적용 영역: 투자, 금융, 파이낸셜, 로펌, 광고 분야
 
 #### Data Flow Diagrams (DFDs)
 
 - Main security issue is protecting information when stored, in transit, and being processed
 - Multiple levels - Level 0 (high level), level 1, level 2 (lowest level)
+- 걍 그냥 말 그대로 데이터 흐름 다이어그램 (무엇이 어디서 어디로 가고 어떻게 processed 되는지)
 
 #### Use Case Model
 
@@ -292,10 +332,12 @@ Example:
 
 - Use cases for normal and abnormal use
   - **Very important to security to understand use cases and misuse cases**
+  - 당연히 알맞게 사용될때, 그리고 비정상적으로 사용할때 다 고려해야함
 
 #### Assurance Models
 
 - **Software assurance - level of confidence that software is free from intentional and accidental vulnerabilities, software functions as intended**
+  - 고의적/우연한 취약점에서 부터 얼마나 자유롭고 의도한 대로 작동할지에 대한 confidence level; 
 
 #### Operational model of security
 
@@ -304,7 +346,7 @@ Three methods of managing security:
 1. prevention - access control, firewall, encryption
 2. detection - audit logs, intrusion detection, honeypots
 3. response - backups, incident response teams, forensics
-
+// Aug 1 2022
 #### NIST CSF
 
 Standards, guidelines, best practices
