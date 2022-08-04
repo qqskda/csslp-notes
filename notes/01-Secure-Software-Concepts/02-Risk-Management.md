@@ -1,29 +1,31 @@
 # Risk Management
 
 - **assess the impact if an adverse event were to happen decide what could be done to control that impact as deemed necessary**
-
+- 적대적 행위가 발견될시에 어떻게 반응할지, 그리고 어떻게 피해를 최소화 할지에 대해서 생각해 두는것
+  
 Well formed risk statement includes:
 
-1. asset
-2. threat
-3. vulnerability
-4. mitigation
-5. impact
-6. probability
+1. asset          - 자원
+2. threat         - 위협
+3. vulnerability  - 취약점
+4. mitigation     - 해결책
+5. impact         - 피해 현황
+6. probability    - 확률
 
 ## Risk
 
 Systematic risk
+- fire, theft, software bugs - mitigated through diversification (분산화)
+- predictable under stable circumstances (예상 가능함)
 
-- fire, theft, software bugs - mitigated through diversification
-- predictable under stable circumstances
-  Unsystematic risk
+Unsystematic risk
 - recession, epidemics, protocol design errors
-- come from sources that are difficult to predict
+- come from sources that are difficult to predict (예상 하기 힘듬)
 
 ### Business risk
 
 - operation of a business as a business
+- 사업 관련 리스크: technology management side 가 아닌 정말 사업 관련; 법률, 기술, 사기, 계약 등등
 
 Examples:
 
@@ -32,7 +34,7 @@ Examples:
 - Revenue management
 - Contract management
 - Fraud
-  - deliberate deception
+  - deliberate deception (계획 사기)
 - Regulatory
 - Business continuity
 - Technology
@@ -40,6 +42,7 @@ Examples:
 ### Technology risk
 
 - technology used in development process as well as software functionality
+- 기술적 보안, 개인정보, 프로젝트 리스크 관리, 매니지먼트 변화 등등 개발 관련 느낌
 
 Examples:
 
@@ -48,25 +51,27 @@ Examples:
 - Project risk management
 - Change management
 
-### Risk controls
+### Risk controls 위험 관리
 
 - 📝 best method for managing risk in software
+  - 소프트웨어에서 위험 관리하는데 있어서 최선의 방법
 - 📝 Understanding environment and risk and applying controls should be owned by development team
+  - 환경및 위험을 이해하고 관리하는것은 개발 팀이 가지고 있어야 한다.
 
 Three classes:
 
-1. Administrative
+1. Administrative 
 2. Technical
 3. Physical
 
 For each class, there are four types of controls
 
-1. Preventative
-2. Detective
-3. Corrective
-4. Compensating
+1. Preventative - 예방
+2. Detective    - 감지
+3. Corrective   - 수정/보안/방어
+4. Compensating - 보상
 
-#### Preventative
+#### Preventative 예방 - 최선은 역시 예방
 
 - primary control
 - proactive
@@ -75,8 +80,8 @@ For each class, there are four types of controls
 
 Examples:
 
-- separation of duties
-- adequate documentation
+- separation of duties (분업화)
+- adequate documentation (서류화)
 - physical control over assets
 - authorization mechanisms
 

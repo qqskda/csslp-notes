@@ -347,19 +347,19 @@ Three methods of managing security:
 2. detection - audit logs, intrusion detection, honeypots
 3. response - backups, incident response teams, forensics
 // Aug 1 2022
-#### NIST CSF
+#### NIST CSF (National Institute of Standards and Technology - Cybersecurity Frame)
 
 Standards, guidelines, best practices
 
 5 main categories:
 
-1. Identify
-2. Protect
-3. Detect
-4. Respond
-5. Recover
+1. Identify - 신원 
+2. Protect  - 보호
+3. Detect   - 감지
+4. Respond  - 반응
+5. Recover  - 회복
 
-## Adversaries
+## Adversaries (적수 - 적대국...)
 
 Includes mother nature :)
 
@@ -378,13 +378,16 @@ Includes mother nature :)
 #### Skill and capability
 
 1. Unstructured threat - little or no resources, no specific motivation, typically only an annoyance
+   1. 딱히 동기없이 그냥 귀찮게 하는 위협정도
 2. Structured threat - specific mission, time and resources
+   1. 특정한 임무, 그리고 시간과 자원을 들여서 하는 위협
 3. Highly structured threat - organized crime, crimeware
+   1. 범죄 레벨
 4. Nation-state threat
    1. Advanced persistent threat (APT) - multiple methods to penetrate and then live undetected
 5. Insider vs outsider
 
-### Threat Landscape Shift
+### Threat Landscape Shift (위협 양상의 변화)
 
 - Around 2005 - criminalization of cyberspace allowing monetization
 - Market for exploits
