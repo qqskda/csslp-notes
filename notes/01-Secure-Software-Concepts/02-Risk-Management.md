@@ -68,8 +68,8 @@ For each class, there are four types of controls
 
 1. Preventative - 예방
 2. Detective    - 감지
-3. Corrective   - 수정/보안/방어
-4. Compensating - 보상
+3. Corrective   - 수정/보안/방어: 최대한 피해 줄이는거
+4. Compensating - 보정: 예방에 실패했을 경우, alternative method 를 이용해서 같은 효과를 내는것
 
 #### Preventative 예방 - 최선은 역시 예방
 
@@ -105,7 +105,7 @@ Examples:
 
 - when primary controls fail
 - reactive
-- defense in depth
+- alternative method: find other ways to do risk control
 
 Example: separation of duties is a preventitve control to prevent fraud, financial review of reports is an after the fact compensating control
 
@@ -116,23 +116,25 @@ Example: separation of duties is a preventitve control to prevent fraud, financi
 ## Qualitative
 
 - **Subjectively determine impact of an event - involves experts and group consensus**
+  - 전문가와 그룹끼리 합의를 봐서 주관적으로 (예상) 피해를 측정하는것.
 
-Two aspects: impact and probability
+Two aspects: impact and probability (피해및 가능성)
 
 ### Qualitative matrix
 
-#### Failure mode effects analysis (FMEA)
+#### Failure mode effects analysis (FMEA) - 고장형태 및 영향분석 - 이거 우리 회서 Jira QA? 점수 매기는 방식
 
-- assess failures and effects on the system
-- for each issue, elements are defined
+- assess failures and effects on the system (실패및 영향을 측정)
+- for each issue, elements are defined (각 이슈마다 정의를 내림)
 - severity of risk is defined (1-10)
 - probability (1-10)
 - detectability (1-10)
 - calculate product (over 200 / 1000 worth looking at)
 
-## Quantitative
+### Quantitative
 
 - **Objectively determine impact of an event - involves use of metrics and models**
+  - 예전에 있던 손해와 트랜드를 바탕으로 미래 손해를 예측 하는 방식 (객관적인 데이터를 통해)
 
 - use historical loss and trends to predict future loss
 - highly dependent on historical loss data
@@ -140,19 +142,19 @@ Two aspects: impact and probability
 
 key info:
 
-- important to come to consensus on values being used
+- important to come to consensus on values being used (사용되는 가치에 대한 합의에 도달하는게 중요)
 - use consistent values
-- models can never replace judgement and experience, but can enhance decision making
+- models can never replace judgement and experience, but can enhance decision making (의사 결정에 도움이 되는정도)
 
-### Single loss expectancy (SLE)
+### Single loss expectancy (SLE) - 간단한 손해 예상
 
 📝 SLE = asset value \* (exposure factor or duration)
 
-### Annualized rate of occurrence (ARO)
+### Annualized rate of occurrence (ARO) - 연평균 발생치
 
 📝 ARO = number of events / number of years covered
 
-### Annualized loss expectancy (ALE)
+### Annualized loss expectancy (ALE) - 연평균 손해 예상
 
 📝 ALE = SLE \* ARO
 
@@ -173,14 +175,17 @@ Example:
 - 📝 ROI % = (avoided loss - control cost) / control cost \* 100
 - 📝 ROI time = avoided annual loss / annual control cost
 
-## Governance, Risk, and Compliance
+## Governance, Risk, and Compliance 거버넌스, 위험 및 규정 준수
 
-- **Governance**: sum of exective actions that manage risk
-- need to comply with laws and regulations, so GRC terms are used synonomously
+- **Governance**: sum of executive actions that manage risk (리스크 관리를 위한 실행 조치 행동의 합)
+  - need to comply with laws and regulations, so GRC terms are used synonomously
 - **Compliance**: activities associated with external requirements (contractual, policy, strategic, industry, regulations, laws)
-- **Conformance**: activities associated with internal requirements (org policies/standards)
+  - 외부 요구사항에 관련된 것들 (계약, 정책, 작전, 사업, 법...)
+- **Conformance - 적합성**: activities associated with internal requirements (org policies/standards)
+  - 내부 규칙
 - Compliance gets priority over conformance
-- many reasons, primary being penalties
+  - 당연히 규정이 적합성보다 우선순위 (외부 규칙이 먼저)
+  - many reasons, primary being penalties (많은 이유가 있지만 가장 큰 이유로는 패널티 때문)
 
 ### Legal
 
@@ -192,8 +197,8 @@ Two key legal issues with significant risk
 
 ### Standards
 
-- established norms
-- **goal**: define rules to ensure specified level of quality
+- established norms (확립된 규범)
+- **goal**: define rules to ensure specified level of quality (즉 규범을 세움으로써 퀄리티 수준을 유지할 수 있음)
 
 ## Risk Management Models
 
@@ -204,13 +209,15 @@ Two key legal issues with significant risk
 2. Threat assessment
    1. threats and vulnerabilities for each asset
    2. likelihood of occurrence
-3. Impact determination and quantification
+3. Impact determination and quantification (영향 결정 및 정량화)
    1. Tangible: financial loss, physical damage
    2. Intangible: reputation
 4. Control design and evaluation
    1. Decide which controls to implement
+   2. And how to evaluate
 5. Residual Risk Management
    1. Identify additional controls needed to reduce residual risk
+   2. 방어벽, 해킹 방어 시스템 등등의 추가적인 관리 방법을 도입해서 잔류 위험 최대한 줄이기
 
 ### Software Engineering Institute Model
 
