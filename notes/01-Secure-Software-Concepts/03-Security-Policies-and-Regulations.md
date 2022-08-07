@@ -294,19 +294,21 @@ Information Technology Laboratory (ITL)
 ### Security Frameworks
 
 #### COBIT - Control Objectives for Information and Related Technology
+정보와 관련 기술을 위한 목적 결정
 
 Published by ISACA (Information Systems Audit and Control Association)
 
 - bridge gap between control reqs, tech issues, and business risks
+  - 필요 사항 결정, 기술적 문제 그리고 사업적 위험 사이에 존재하는 갭들을 연결해줌
 - Latest is COBIT 2019 (book explains COBIT 5)
 
 ##### COBIT 5 Principles
 
-1. Meeting stakeholder needs
-2. covering the enterprise end to end
-3. applying a single, integrated frmwrk
-4. enabling a holistic apprch
-5. separating governance from mgmt
+1. Meeting stakeholder needs; 이해 관계자의 필요 충족  (비지니스)
+2. covering the enterprise end to end; 사업 관련 사항 모든것을 커버해야함 (비지니스, 컨트롤)
+3. applying a single, integrated frmwrk; 통합 프레임워크 (기술)
+4. enabling a holistic apprch; 전체적 접근 허가 (컨트롤)
+5. separating governance from mgmt; 관리에서 통치 분리 (컨트롤)
 
 #### COSO - Committee of Sponsoring Organizations of the Treadway Commission
 
